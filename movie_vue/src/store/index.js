@@ -17,6 +17,12 @@ export default new Vuex.Store({
     articles: [],
   },
   getters: {
+    //isLoggedIn: state => !!state.authToken,
+    config: state => ({
+      headers: {
+        Authorization: `Token ${state.authToken}`
+      }
+    })
   },
   mutations: {
     SET_TOKEN(state, token) {
@@ -48,9 +54,17 @@ export default new Vuex.Store({
       axios.get(SERVER.URL + SERVER.ROUTES.articleList)
         .then(res => {
           commit('SET_ARTICLES', res.data)
-
         })
     },
+    createArticle({ getters }, articleData) {
+      axios.post(SERVER.URL + SERVER.ROUTES.createArticle, articleData, getters.config)
+        .then((res) => {
+          console.log(res) // => 디테일로 넘어가기 원하면 사용해야함
+          router.push({ name: 'List' })
+        })
+        .catch(err => console.log(err.response.data))
+    },
+
   },
   modules: {
   }

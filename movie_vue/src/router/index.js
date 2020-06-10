@@ -6,6 +6,7 @@ import Home from '@/views/Home.vue'
 import LoginView from '@/views/accounts/LoginView'
 import SignupView from '@/views/accounts/SignupView'
 import ListView from '@/views/articles/ListView'
+import ArticleCreateView from '@/views/articles/ArticleCreateView'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ Vue.use(VueRouter)
     path: '/articles',
     name: 'List',
     component: ListView
+  },
+  {
+    path: '/articles/create',
+    name: 'ArticleCreate',
+    component: ArticleCreateView
   },
 ]
 
