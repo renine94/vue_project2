@@ -17,7 +17,7 @@ export default new Vuex.Store({
     articles: [],
   },
   getters: {
-    //isLoggedIn: state => !!state.authToken,
+    isLoggedIn: state => !!state.authToken, // 문자열을 T/F 로바꿔줌
     config: state => ({
       headers: {
         Authorization: `Token ${state.authToken}`

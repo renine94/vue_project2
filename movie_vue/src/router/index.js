@@ -9,6 +9,8 @@ import ListView from '@/views/articles/ListView'
 import ArticleCreateView from '@/views/articles/ArticleCreateView'
 import LogoutView from '@/views/accounts/LogoutView'
 
+// router.beforeEach 위한 임포트
+import cookies from 'vue-cookies'
 
 Vue.use(VueRouter)
 
@@ -50,5 +52,21 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  const publicPages = ['Login', 'Signup', 'Home', 'List']  // Login 안해도 됨
+  const authPages = ['Login', 'Signup']  // Login 되어있으면 안됨
+
+  const authRequired = !publicPages.includes(to.name)  // 로그인 해야 함.
+  const unauthRequired = authPages.includes(to.name)  // 로그인 해서는 안됨
+  const isLoggedIn = cookies.isKey('auth-token')
+
+  if(unauthRequired && isLoggedIn) {
+    next('/')
+  }
+  authRequired && !isLoggedIn ? next({ name: 'Login'}) : next()
+})
+
+
 
 export default router
