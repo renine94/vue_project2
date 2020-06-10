@@ -13,7 +13,7 @@ class ArticleListSerializer(serializers.ModelSerializer):
 
 class ArticleSerializer(serializers.ModelSerializer):
     user = UserSerializer(required=False)
-    created_at = serializers.DateTimeField(format="%Y년 %m월 %d일 %H:%M:%S")
+    created_at = serializers.DateTimeField(required=False, format="%Y년 %m월 %d일 %H:%M:%S")
 
     class Meta:
         model = Article
