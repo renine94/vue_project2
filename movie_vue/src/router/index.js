@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 // views 안에 router 연결된 Components
 import Home from '@/views/Home.vue'
 import LoginView from '@/views/accounts/LoginView'
+import SignupView from '@/views/accounts/SignupView'
 
 Vue.use(VueRouter)
 
@@ -17,6 +18,11 @@ Vue.use(VueRouter)
     path: '/accounts/login',
     name: 'Login',
     component: LoginView
+  },
+  {
+    path: '/accounts/signup',
+    name: 'Signup',
+    component: SignupView
   },
 ]
 
