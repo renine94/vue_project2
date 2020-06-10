@@ -7,6 +7,8 @@ import LoginView from '@/views/accounts/LoginView'
 import SignupView from '@/views/accounts/SignupView'
 import ListView from '@/views/articles/ListView'
 import ArticleCreateView from '@/views/articles/ArticleCreateView'
+import LogoutView from '@/views/accounts/LogoutView'
+
 
 Vue.use(VueRouter)
 
@@ -35,6 +37,11 @@ Vue.use(VueRouter)
     path: '/articles/create',
     name: 'ArticleCreate',
     component: ArticleCreateView
+  },
+  {
+    path: '/accounts/logout',
+    name: 'Logout',
+    component: LogoutView
   },
 ]
 

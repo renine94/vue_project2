@@ -4,6 +4,7 @@
       <router-link to="/">Home</router-link> |
       <router-link :to="{ name: 'Login' }">Login</router-link> |
       <router-link :to="{ name: 'Signup' }">Signup</router-link> |
+      <router-link :to="{ name: 'Logout' }">Logout</router-link> |
       <router-link :to="{ name: 'List' }">Articles</router-link> |
       <router-link :to="{ name: 'ArticleCreate' }">create</router-link> |
     </div>

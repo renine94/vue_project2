@@ -34,22 +34,40 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    login({ commit }, loginData) {
-      axios.post(SERVER.URL + SERVER.ROUTES.login, loginData)
+    postAuthData({ commit }, info) {
+      axios.post(SERVER.URL + info.location, info.data)
         .then(res => {
           commit('SET_TOKEN', res.data.key)
           router.push({ name: 'Home' })
         })
         .catch(err => console.log(err.response.data))
     },
-    signup({ commit }, signupData) {
-      axios.post(SERVER.URL + SERVER.ROUTES.signup, signupData)
-        .then(res => {
-          commit('SET_TOKEN', res.data.key)
-          router.push({ name: 'Home'})
+    // accounts
+    signup({ dispatch }, signupData) {
+      const info = {
+        location: SERVER.ROUTES.signup,
+        data: signupData
+      }
+      dispatch('postAuthData', info)
+    },
+    login({ dispatch }, loginData) {
+      const info = {
+        location: SERVER.ROUTES.login,
+        data: loginData
+      }
+      dispatch('postAuthData', info)
+    },
+    logout({ getters, commit }) {
+      axios.post(SERVER.URL + SERVER.ROUTES.logout, null, getters.config)
+        .then(() => {
+          commit('SET_TOKEN', null) // state.authToken = null & 브라우저 쿠키 값을 null 지정한다.
+          cookies.remove('auth-token') // 브라우저 쿠키를 삭제한다.
+          router.push({ name: 'Home' })
         })
         .catch(err => console.log(err.response.data))
     },
+
+    // articles
     fetchArticles({ commit }) {
       axios.get(SERVER.URL + SERVER.ROUTES.articleList)
         .then(res => {
