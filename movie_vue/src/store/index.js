@@ -14,6 +14,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     authToken: cookies.get('auth-token'),
+    articles: [],
   },
   getters: {
   },
@@ -21,7 +22,10 @@ export default new Vuex.Store({
     SET_TOKEN(state, token) {
       state.authToken = token // data 저장
       cookies.set('auth-token', token) // browser 쿠키저장
-    }
+    },
+    SET_ARTICLES(state, articles) {
+      state.articles = articles
+    },
   },
   actions: {
     login({ commit }, loginData) {
@@ -39,6 +43,13 @@ export default new Vuex.Store({
           router.push({ name: 'Home'})
         })
         .catch(err => console.log(err.response.data))
+    },
+    fetchArticles({ commit }) {
+      axios.get(SERVER.URL + SERVER.ROUTES.articleList)
+        .then(res => {
+          commit('SET_ARTICLES', res.data)
+
+        })
     },
   },
   modules: {
