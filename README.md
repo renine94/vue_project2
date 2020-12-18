@@ -7,7 +7,7 @@
 ## 0610 (수) - Vue.pjt2
 
 
-- 파이썬
+파이썬
 ```bash
 python -m venv venv
 source venv/Scripts/activate
@@ -17,7 +17,7 @@ python manage.py migrate
 python mange.py runserver
 '''
 
-- Vue.js
+뷰
 ```bash
 npm install
 npm run serve
