@@ -6,3 +6,20 @@
 
 ## 0610 (수) - Vue.pjt2
 
+
+- 파이썬
+```bash
+python -m venv venv
+source venv/Scripts/activate
+pip install -r requirements.txt
+
+python manage.py migrate
+python mange.py runserver
+'''
+
+- Vue.js
+```bash
+npm install
+npm run serve
+npm run build
+```
